@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MVC_EF_DEMO.Models.ProductsDB>
+
+@{
+    ViewBag.Title = "产品信息查询";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<h2>产品信息查询</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        品号: @Html.TextBox("Search_code")
+        <br><br>
+        品名: @Html.TextBox("Search_name")
+        <br><br>
+        规格: @Html.TextBox("Search_spec")
+        <input type="submit" value="查询" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.model_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.product_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.counting_unit)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.model_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.product_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.counting_unit)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
